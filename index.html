@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Customer Reviews</title>
+    <!-- Link to Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@1.18.0/dist/full.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Custom Theme */
+      :root {
+        --primary: #3b82f6;
+        --secondary: #f9d342;
+      }
+
+      body {
+        background-color: #f0f8ff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      .header,
+      .hero,
+      .features,
+      .reviews,
+      .setup,
+      .yellow-text {
+        color: var(--secondary);
+      }
+
+      /* Animation Classes */
+      .animate-card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+      }
+
+      .animate-card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .review-card:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-glow:hover {
+        box-shadow: 0 0 15px rgba(74, 222, 128, 0.7);
+      }
+
+      /* Hero Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-hero {
+        animation: fadeIn 1s ease-out forwards;
+      }
+
+      /* Pulse Animation for CTA */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .animate-pulse {
+        animation: pulse 2s infinite;
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <!-- Header -->
+    <header class="bg-blue-600 p-4 md:p-6 shadow-lg sticky top-0 z-50">
+      <div
+        class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center"
+      >
+        <div
+          class="flex items-center mb-4 md:mb-0 cursor-pointer group"
+          onclick="scrollToTop()"
+        >
+          <img
+            src="/logo.png"
+            alt="Logo"
+            class="w-28 mr-20 transition-transform group-hover:scale-105"
+          />
+          <h1
+            class="text-2xl md:text-3xl font-bold text-center text-yellow-400 transition-colors group-hover:text-yellow-300"
+          >
+            Happy Customer Reviews
+          </h1>
+        </div>
+        <nav
+          class="flex flex-wrap justify-center gap-4 md:gap-6 text-white items-center"
+        >
+          <a
+            href="#features"
+            class="text-base md:text-lg hover:text-yellow-300 transition"
+            >Features</a
+          >
+          <a
+            href="#how-it-works"
+            class="text-base md:text-lg hover:text-yellow-300 transition"
+            >How It Works</a
+          >
+          <a
+            href="#reviews"
+            class="text-base md:text-lg hover:text-yellow-300 transition"
+            >Reviews</a
+          >
+          <a
+            href="#contact"
+            class="text-base md:text-lg hover:text-yellow-300 transition"
+            >Contact</a
+          >
+          <a
+            href="#login"
+            class="btn-glow text-base md:text-lg bg-yellow-500 hover:bg-blue-400 px-6 py-2 rounded-full transition animate-pulse"
+          >
+            Login
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-16 md:py-24 text-center px-4"
+    >
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-bold mb-6 animate-hero">
+          Empowering Businesses with Authentic Reviews
+        </h2>
+        <p
+          class="text-lg md:text-xl mb-8 animate-hero"
+          style="animation-delay: 0.2s"
+        >
+          Effortlessly collect, manage, and showcase customer feedback. Build
+          trust and boost your reputation.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row justify-center gap-4 animate-hero"
+          style="animation-delay: 0.4s"
+        >
+          <a
+            href="#login"
+            class="btn-glow px-8 py-3 text-lg font-semibold rounded-full bg-yellow-500 hover:bg-blue-400 transition inline-block"
+          >
+            Login Now
+          </a>
+          <a
+            href="#features"
+            class="px-8 py-3 text-lg font-semibold rounded-full bg-white text-blue-600 hover:bg-gray-100 transition inline-block"
+          >
+            Learn More
+          </a>
+        </div>
+        <div
+          class="mt-12 relative h-64 md:h-[700px] animate-hero"
+          style="animation-delay: 0.6s"
+        >
+          <img
+            src="/Banner/banner.webp"
+            alt="App Preview"
+            class="rounded-lg shadow-2xl absolute w-full h-full object-fill"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 md:py-20 px-6 bg-white">
+      <div class="max-w-screen-xl mx-auto">
+        <div class="text-center mb-12">
+          <h3 class="text-2xl md:text-3xl font-semibold text-blue-600 mb-4">
+            Powerful Features
+          </h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Everything you need to collect, manage, and leverage customer
+            feedback effectively
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="features-container"
+        >
+          <!-- Features will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini About Section -->
+    <section id="about" class="py-16 px-6 bg-teal-50">
+      <div class="max-w-screen-xl mx-auto text-center">
+        <h3 class="text-2xl md:text-3xl font-semibold text-blue-600 mb-12">
+          Why Choose Happy Customer Reviews?
+        </h3>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-3 gap-8"
+          id="benefits-container"
+        >
+          <!-- Benefits will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section id="reviews" class="py-16 md:py-20 px-6 bg-white">
+      <div class="max-w-screen-xl mx-auto">
+        <div class="text-center mb-12">
+          <h3 class="text-2xl md:text-3xl font-semibold text-blue-600 mb-4">
+            What Our Customers Say
+          </h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Don't just take our word for it - hear from businesses like yours
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="reviews-container"
+        >
+          <!-- Reviews will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 px-6 bg-gray-50">
+      <div class="max-w-screen-xl mx-auto">
+        <div class="text-center mb-12">
+          <h3 class="text-2xl md:text-3xl font-semibold text-blue-600 mb-4">
+            How It Works
+          </h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Get started in just a few simple steps
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center"
+          id="steps-container"
+        >
+          <!-- Steps will be inserted here by JavaScript -->
+        </div>
+        <div class="mt-16 text-center">
+          <a
+            href="#login"
+            class="btn-glow px-8 py-3 text-lg text-white font-semibold rounded-full bg-yellow-500 hover:bg-blue-400 transition inline-block animate-pulse"
+          >
+            Login to Get Started
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      id="contact"
+      class="py-16 md:py-24 px-6 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-center"
+    >
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-2xl md:text-4xl font-bold mb-6">
+          Ready to Transform Your Customer Feedback?
+        </h3>
+        <p class="text-lg md:text-xl mb-8">
+          Join thousands of businesses building trust with authentic reviews
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#login"
+            class="btn-glow px-8 py-3 text-lg font-semibold rounded-full bg-yellow-500 hover:bg-blue-400 transition inline-block animate-pulse"
+          >
+            Login Now
+          </a>
+          <a
+            href="#"
+            class="px-8 py-3 text-lg font-semibold rounded-full bg-white text-blue-600 hover:bg-gray-100 transition inline-block"
+          >
+            Request Demo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 w-full">
+      <div class="px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Happy Customer Reviews</h4>
+            <p class="mb-4">
+              Empowering businesses with authentic customer feedback solutions.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white hover:text-yellow-300 transition"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-white hover:text-yellow-300 transition"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-white hover:text-yellow-300 transition"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a href="#" class="text-white hover:text-yellow-300 transition"
+                ><i class="fab fa-instagram"></i
+              ></a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#features" class="hover:text-yellow-300 transition"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a href="#how-it-works" class="hover:text-yellow-300 transition"
+                  >How It Works</a
+                >
+              </li>
+              <li>
+                <a href="#reviews" class="hover:text-yellow-300 transition"
+                  >Customer Stories</a
+                >
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-yellow-300 transition"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Resources</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="hover:text-yellow-300 transition">Blog</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-yellow-300 transition"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-yellow-300 transition"
+                  >API Documentation</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-yellow-300 transition"
+                  >Community</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Contact Us</h4>
+            <ul class="space-y-2">
+              <li>
+                <i class="fas fa-envelope mr-2"></i> support@happyreviews.com
+              </li>
+              <li><i class="fas fa-phone mr-2"></i> (123) 456-7890</li>
+              <li>
+                <i class="fas fa-map-marker-alt mr-2"></i> 123 Business St,
+                Suite 100
+              </li>
+              <li>San Francisco, CA 94107</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12 pt-6 border-t border-gray-800 text-center">
+          <p>
+            &copy; 2025 Happy Customer Reviews. All rights reserved. |
+            <a href="#" class="hover:text-yellow-300">Privacy Policy</a> |
+            <a href="#" class="hover:text-yellow-300">Terms of Service</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- The main Boss JavaScript is animated function is start from here -->
+
+    <script>
+      // Data
+      const data = {
+        features: [
+          {
+            title: "Collect Feedback",
+            description:
+              "Seamlessly collect authentic reviews from your customers via email, SMS, or web widgets with automated follow-ups.",
+            icon: "fas fa-comment-alt",
+          },
+          {
+            title: "Review Management",
+            description:
+              "Moderate, organize, and respond to all customer feedback from a centralized dashboard with smart filtering options.",
+            icon: "fas fa-tasks",
+          },
+          {
+            title: "Real-Time Analytics",
+            description:
+              "Track review trends, sentiment analysis, and customer satisfaction metrics with beautiful, actionable dashboards.",
+            icon: "fas fa-chart-line",
+          },
+          {
+            title: "Social Sharing",
+            description:
+              "Easily share positive reviews on social media platforms to amplify your brand's reputation and reach.",
+            icon: "fas fa-share-alt",
+          },
+          {
+            title: "Custom Branding",
+            description:
+              "Maintain consistent branding with white-label options, custom colors, and your company logo throughout.",
+            icon: "fas fa-paint-brush",
+          },
+          {
+            title: "Integration Ready",
+            description:
+              "Connect with your existing tools like CRM, helpdesk, and marketing platforms via our powerful API.",
+            icon: "fas fa-plug",
+          },
+        ],
+        benefits: [
+          {
+            title: "Authentic Reviews",
+            description:
+              "Verified customer feedback you can trust with our fraud detection system.",
+            icon: "fas fa-check-circle",
+          },
+          {
+            title: "Increased Engagement",
+            description:
+              "Tools to help you respond to and leverage customer feedback effectively.",
+            icon: "fas fa-comments",
+          },
+          {
+            title: "Boosted Reputation",
+            description:
+              "Showcase positive reviews to build trust and attract more customers.",
+            icon: "fas fa-star",
+          },
+        ],
+        reviews: [
+          {
+            name: "Sarah Johnson",
+            role: "Marketing Director, Retail",
+            quote:
+              "Our review response rate went from 20% to 85% in just two months. The automated follow-ups are a game changer!",
+            rating: 5,
+            image: "https://randomuser.me/api/portraits/women/44.jpg",
+          },
+          {
+            name: "Michael Chen",
+            role: "Owner, Restaurant Chain",
+            quote:
+              "Customer satisfaction scores increased by 30% since we started using Happy Customer Reviews. The analytics helped us identify key improvement areas.",
+            rating: 5,
+            image: "https://randomuser.me/api/portraits/men/32.jpg",
+          },
+          {
+            name: "Emily Rodriguez",
+            role: "CEO, SaaS Company",
+            quote:
+              "The seamless integration with our CRM saved us countless hours. Now we have customer feedback right where we need it.",
+            rating: 4,
+            image: "https://randomuser.me/api/portraits/women/68.jpg",
+          },
+        ],
+        steps: [
+          {
+            title: "Sign Up",
+            description: "Create your free account in seconds",
+            icon: "fas fa-user-plus",
+          },
+          {
+            title: "Connect",
+            description: "Integrate with your website or customer database",
+            icon: "fas fa-link",
+          },
+          {
+            title: "Customize",
+            description: "Set up your review collection preferences",
+            icon: "fas fa-cog",
+          },
+          {
+            title: "Engage",
+            description: "Start collecting and responding to reviews",
+            icon: "fas fa-comments",
+          },
+        ],
+      };
+
+      // Utility Functions
+      const utils = {
+        createStars: (rating) => {
+          let stars = "";
+          for (let i = 0; i < 5; i++) {
+            stars +=
+              i < rating
+                ? '<i class="fas fa-star text-yellow-400"></i>'
+                : '<i class="far fa-star text-yellow-400"></i>';
+          }
+          return stars;
+        },
+
+        scrollToTop: () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        },
+
+        setupIntersectionObserver: (selector, delay = 150) => {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const index = Array.from(
+                    entry.target.parentNode.children
+                  ).indexOf(entry.target);
+                  setTimeout(() => {
+                    entry.target.classList.add("show");
+                  }, delay * index);
+                }
+              });
+            },
+            { threshold: 0.1 }
+          );
+
+          document
+            .querySelectorAll(selector)
+            .forEach((el) => observer.observe(el));
+        },
+
+        createCard: (content, type = "feature") => {
+          const card = document.createElement("div");
+          card.className = `${type}-card bg-gray-50 p-6 rounded-lg shadow-md transition cursor-default animate-card`;
+          card.innerHTML = content;
+          return card;
+        },
+      };
+
+      // Render Functions
+      const render = {
+        features: () => {
+          const container = document.getElementById("features-container");
+          data.features.forEach((feature) => {
+            const content = `
+              <div class="text-blue-600 text-4xl mb-4">
+                <i class="${feature.icon}"></i>
+              </div>
+              <h4 class="text-xl font-semibold mb-4">${feature.title}</h4>
+              <p class="text-gray-600">${feature.description}</p>
+            `;
+            container.appendChild(utils.createCard(content, "feature"));
+          });
+          utils.setupIntersectionObserver(".feature-card");
+        },
+
+        benefits: () => {
+          const container = document.getElementById("benefits-container");
+          data.benefits.forEach((benefit) => {
+            container.innerHTML += `
+              <div class="flex flex-col items-center animate-card">
+                <div class="text-blue-600 text-5xl mb-6">
+                  <i class="${benefit.icon}"></i>
+                </div>
+                <p class="font-semibold text-lg mb-2">${benefit.title}</p>
+                <p class="text-gray-600 max-w-xs">${benefit.description}</p>
+              </div>
+            `;
+          });
+          utils.setupIntersectionObserver("#benefits-container > div", 100);
+        },
+
+        reviews: () => {
+          const container = document.getElementById("reviews-container");
+          data.reviews.forEach((review) => {
+            const content = `
+              <div class="flex items-center mb-4">
+                <img src="${review.image}" alt="${
+              review.name
+            }" class="w-12 h-12 rounded-full mr-4" />
+                <div>
+                  <p class="font-semibold">${review.name}</p>
+                  <p class="text-sm text-gray-500">${review.role}</p>
+                </div>
+              </div>
+              <div class="mb-4">
+                ${utils.createStars(review.rating)}
+              </div>
+              <p class="text-gray-700 italic">"${review.quote}"</p>
+            `;
+            container.appendChild(utils.createCard(content, "review"));
+          });
+          utils.setupIntersectionObserver(".review-card");
+        },
+
+        steps: () => {
+          const container = document.getElementById("steps-container");
+          data.steps.forEach((step, index) => {
+            container.innerHTML += `
+              <div class="flex flex-col items-center animate-card">
+                <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl mb-4">
+                  <i class="${step.icon}"></i>
+                </div>
+                <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center -mt-10 mb-2 font-bold">${
+                  index + 1
+                }</div>
+                <h4 class="font-semibold text-lg mb-2">${step.title}</h4>
+                <p class="text-gray-600">${step.description}</p>
+              </div>
+            `;
+          });
+          utils.setupIntersectionObserver("#steps-container > div", 100);
+        },
+
+        initSmoothScrolling: () => {
+          document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+              e.preventDefault();
+              document.querySelector(this.getAttribute("href")).scrollIntoView({
+                behavior: "smooth",
+              });
+            });
+          });
+        },
+      };
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", () => {
+        render.features();
+        render.benefits();
+        render.reviews();
+        render.steps();
+        render.initSmoothScrolling();
+      });
+    </script>
+  </body>
+</html>
