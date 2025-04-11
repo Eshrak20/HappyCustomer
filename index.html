@@ -407,6 +407,9 @@
     <!-- The main Boss JavaScript is animated function is start from here -->
 
     <script>
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       // Data
       const data = {
         features: [
@@ -528,10 +531,6 @@
                 : '<i class="far fa-star text-yellow-400"></i>';
           }
           return stars;
-        },
-
-        scrollToTop: () => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
         },
 
         setupIntersectionObserver: (selector, delay = 150) => {
